@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/public', function () {
+    return ('Nama : Aqmarina Nur Alifiani Subingat');
+});
+Route::get('pengguna/{pengguna}', function ($pengguna) {
+    return ("Haiiiii Kamu $pengguna");
+});
+
