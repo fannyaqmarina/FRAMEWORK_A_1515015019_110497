@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class pengguna extends Model
 {
     protected $table = 'pengguna';
-    protected $isi = ['username','password'];
+    protected $fillable = ['username','password'];
      public function mahasiswa()
     {
     	return $this->hasOne(mahasiswa::class);//satu pengguna dimiliki oleh setiap satu mahasiswa
