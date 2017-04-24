@@ -23,6 +23,10 @@ public function tambah(){
 }
 
 public function simpan(Request $input){
+     $this->validate($input,[
+            'dosen'=>'required',
+            'matakuliah'=>'required'
+            ]);
     $dosen_matakuliah= new dosen_matakuliah($input->only('matakuliah_id','dosen_id'));
         if ($dosen_matakuliah->save()) $this->informasi = 'Berhasil Simpan Jadwal dosen ';
         return redirect('dosen_matakuliah')->with(['informasi'=>$this->informasi]);
@@ -39,6 +43,10 @@ public function lihat($id){
     return view('dosen_matakuliah.lihat')->with(array('dosen_matakuliah'=>$dosen_matakuliah));
 }
 public function update($id, Request $input){
+    $this->validate($input,[
+            'dosen'=>'required',
+            'matakuliah'=>'required'
+            ]);
     $dosen_matakuliah = dosen_matakuliah::find($id);
     $dosen_matakuliah->fill($input->only('matakuliah_id','dosen_id'));
     if($dosen_matakuliah->save())$this->informasi="Jadwal Berhasil di update";

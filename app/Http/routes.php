@@ -7,12 +7,18 @@ use App\ruangan;
 use App\dosen_matakuliah;
 use App\jadwal_matkul;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 Route::get('/public', function () {
     return ('Nama : Aqmarina Nur Alifiani Subingat');
 });
+Route::get('/login','sesicontroller@form');
+Route::post('/login','sesicontroller@validasi');
+Route::get('/logout','sesicontroller@logout');
+Route::get('/','sesicontroller@index');
+
+Route::group(['midleware'=>'AutentifikasiUser'],function(){
 Route::get('pengguna','penggunacontroller@awal');
 Route::get('/pengguna/tambah','penggunacontroller@tambah');
 Route::get('pengguna/lihat/{pengguna}','penggunacontroller@lihat');
@@ -68,7 +74,42 @@ Route::post('/dosen_matakuliah/simpan','dosen_matakuliahc@simpan');
 Route::get('/dosen_matakuliah/edit/{dosen_matakuliah}','dosen_matakuliahc@edit');
 Route::post('/dosen_matakuliah/edit/{dosen_matakuliah}','dosen_matakuliahc@update');
 Route::get('/dosen_matakuliah/hapus/{dosen_matakuliah}','dosen_matakuliahc@hapus');
+});
 
+
+Route::get('ujiHas','RelationshipRebornController@ujiHas');
+Route::get('ujigakpunya','RelationshipRebornController@ujigakpunya');
+// Route::get('/',function()
+// {
+// 	return \App\dosen_matakuliah::whereHas('dosen',function($query)
+// 	{
+// 		$query->where('nama','like','%s%');
+// 	})
+// 	->orWhereHas('matakuliah',function($kueri)
+// 	{
+// 		$kueri->where('title','like','%a%');
+// 	})
+// 	->with('dosen')
+// 	->groupBy('dosen_id')
+// 	->get();
+// });
+
+// Route::get('/',function(Illuminate\Http\Request $request)
+// {
+// 	echo "ini adalah request dari method get ". $request->nama;
+// });
+
+// use Illuminate\Http\Request;
+// Route::get('/',function(){
+// 	echo Form::open(['url'=>'/']).
+// 	Form::label('nama').
+// 	Form::text('nama',null).
+// 	Form::submit('kirim').
+// 	Form::close();
+// });
+// Route::post('/',function(Request $request){
+// 	echo "Hasil dari form input tadi nama : ".$request->nama;
+// });
 
 /*Route::get('/dosen','dosenc@awal');
 Route::get('/dosen/tambah','dosenc@tambah');

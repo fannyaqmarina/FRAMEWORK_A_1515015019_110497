@@ -13,7 +13,7 @@ class dosen extends Model
    }
    
    public function dosen_matakuliah(){
-   	return $this->hasMany(dosen_matakuliah::class,'dosen_matakuliah_id');//kemudian dosen akan menjadi entitas kuat untuk banyak matakuliah
+   	return $this->hasMany(dosen_matakuliah::class,'dosen_id');//kemudian dosen akan menjadi entitas kuat untuk banyak matakuliah
    }
 
    public function listdosenDanNip(){

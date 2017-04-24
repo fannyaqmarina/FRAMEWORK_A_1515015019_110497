@@ -19,6 +19,10 @@ class matakuliahc extends Controller
     }
     public function simpan(Request $input)
     {
+         $this->validate($input,[
+            'title'=>'required',
+            'Keterangan'=>'required'
+            ]);
         $matakuliah = new matakuliah();
         $matakuliah->title=$input->title;
         $matakuliah->Keterangan =$input->Keterangan;
@@ -37,6 +41,10 @@ class matakuliahc extends Controller
     }
     public function update($id,Request $input)
     {
+         $this->validate($input,[
+            'title'=>'required',
+            'Keterangan'=>'required'
+            ]);
         $matakuliah = matakuliah::find($id);
        $matakuliah->title=$input->title;
         $matakuliah->Keterangan =$input->Keterangan;

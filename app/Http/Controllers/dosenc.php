@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\dosen;
 use App\pengguna;
+use App\Http\Requests\dosenrequest;
 
 class dosenc extends Controller{
 protected $informasi = 'Gagal melakukan aksi';
@@ -15,7 +16,7 @@ public function awal(){
 public function tambah(){
     return view('dosen.tambah');
 }
-public function simpan(Request $input){
+public function simpan(dosenrequest $input){
     $pengguna = new pengguna($input->only('username','password'));
     if ($pengguna->save()) {
         $dosen = new dosen();
@@ -34,7 +35,7 @@ public function lihat($id){
     $dosen = dosen::find($id);
     return view('dosen.lihat')->with(array('dosen'=>$dosen));
 }
-public function update($id, Request $input){
+public function update($id, dosenrequest $input){
     $dosen = dosen::find($id);
     $pengguna = $dosen->pengguna;
     $dosen->nama = $input->nama;
