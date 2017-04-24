@@ -2,13 +2,12 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\Authenticable;
+use Illuminate\Database\Elequent\Model;
+//use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Auth\User as Authenticable;
 
-class pengguna extends Model implements Authenticable
+class pengguna extends Authenticable
 {
-    use AuthenticableTrait;
     protected $table = 'pengguna';
     protected $fillable = ['username','password'];
      public function mahasiswa()
